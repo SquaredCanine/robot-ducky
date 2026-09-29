@@ -1,6 +1,7 @@
 package furhatos.app.newskill.flow.main
 
 import furhatos.app.newskill.flow.Parent
+import furhatos.app.newskill.nlu.CalmDown
 import furhatos.flow.kotlin.State
 import furhatos.flow.kotlin.furhat
 import furhatos.flow.kotlin.onResponse
@@ -18,7 +19,7 @@ val Ducky: State = state(Parent) {
     }
     
     onResponse {
-        // Do OpenAI calls
+        // Do Gemini calls
         // Return text and gestures
         // Speak text and perform gestures
         // Increase robot volatility
