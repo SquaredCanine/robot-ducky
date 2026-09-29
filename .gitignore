@@ -27,7 +27,6 @@ replay_pid*
 .kotlin/
 
 # gradle things
-.gradle/
 
 # builds
 build/
