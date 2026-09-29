@@ -8,11 +8,13 @@ import furhatos.flow.kotlin.state
 val Idle: State = state {
     onEntry {
         furhat.attendNobody()
+        if (furhat.isVirtual()) {
+            goto(Ducky)
+        }
     }
 
     onUserEnter {
         furhat.attend(it)
-        goto(Greeting)
+        goto(Ducky)
     }
-
 }

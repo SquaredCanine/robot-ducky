@@ -1,12 +1,12 @@
 package furhatos.app.newskill
 
-import furhatos.app.newskill.flow.Init
+import furhatos.app.newskill.flow.main.Idle
 import furhatos.flow.kotlin.Flow
 import furhatos.skills.Skill
 
 class NewskillSkill : Skill() {
     override fun start() {
-        Flow().run(Init)
+        Flow().run(Idle)
     }
 }
 
