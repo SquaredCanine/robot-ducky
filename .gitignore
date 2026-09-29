@@ -25,3 +25,13 @@ replay_pid*
 
 # Kotlin Gradle plugin data, see https://kotlinlang.org/docs/whatsnew20.html#new-directory-for-kotlin-data-in-gradle-projects
 .kotlin/
+
+# gradle things
+.gradle/
+
+# builds
+build/
+
+# Local Gemini API key — never commit
+gemini.properties
+src/main/resources/gemini.properties
