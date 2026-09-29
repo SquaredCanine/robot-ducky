@@ -27,7 +27,7 @@ replay_pid*
 .kotlin/
 
 # ide things
-.ide/
+.idea/
 
 # builds
 build/
