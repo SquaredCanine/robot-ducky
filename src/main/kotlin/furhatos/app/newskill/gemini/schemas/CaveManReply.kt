@@ -36,7 +36,7 @@ data class CaveManReply(
             """
             The user is talking to you out loud. Their speech was transcribed as:
 
-            "{{userSpeech}}"
+            "$userText"
 
             The transcription may be imperfect: punctuation is missing and words may have come through
             wrong. Read it for intent, not literally.

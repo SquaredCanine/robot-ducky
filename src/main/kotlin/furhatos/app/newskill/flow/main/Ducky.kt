@@ -6,6 +6,7 @@ import furhatos.app.newskill.gemini.schemas.CaveManReply
 import furhatos.app.newskill.nlu.CalmDown
 import furhatos.flow.kotlin.State
 import furhatos.flow.kotlin.furhat
+import furhatos.flow.kotlin.onNoResponse
 import furhatos.flow.kotlin.onResponse
 import furhatos.flow.kotlin.state
 
@@ -21,13 +22,24 @@ val Ducky: State = state(Parent) {
         // Calm the robot down
         furhat.listen()
     }
-
+    
+    onNoResponse {
+        val reply = gemini.generate(
+            prompt = CaveManReply.prompt(""),
+            format = CaveManReply.Format,
+            systemInstruction = CaveManReply.systemInstructions
+        )
+        furhat.ask(reply.response)
+    }
+    
     onResponse {
         // placeholder
+        println("user said: ${it.text}")
         val reply = gemini.generate(
             prompt = CaveManReply.prompt(it.text),
             format = CaveManReply.Format,
-            systemInstruction = CaveManReply.systemInstructions
+            systemInstruction = CaveManReply.systemInstructions,
+            thinkingBudget = null,
         )
         furhat.ask(reply.response)
         // 1st assignment
