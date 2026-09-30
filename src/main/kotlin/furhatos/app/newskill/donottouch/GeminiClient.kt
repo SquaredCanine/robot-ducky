@@ -2,13 +2,6 @@ package furhatos.app.newskill.donottouch
 
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import furhatos.app.newskill.gemini.Content
-import furhatos.app.newskill.gemini.ErrorEnvelope
-import furhatos.app.newskill.gemini.GenerateContentRequest
-import furhatos.app.newskill.gemini.GenerateContentResponse
-import furhatos.app.newskill.gemini.GenerationConfig
-import furhatos.app.newskill.gemini.Part
-import furhatos.app.newskill.gemini.ThinkingConfig
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException

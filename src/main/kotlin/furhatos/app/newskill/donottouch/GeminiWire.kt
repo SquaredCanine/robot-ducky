@@ -1,6 +1,4 @@
-package furhatos.app.newskill.gemini
-
-import furhatos.app.newskill.donottouch.GeminiSchema
+package furhatos.app.newskill.donottouch
 
 /*
  * Wire format for the Gemini `generateContent` REST endpoint.

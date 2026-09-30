@@ -10,8 +10,7 @@ class CalmDown : Intent() {
     override fun getExamples(lang: Language): List<String> {
         return listOf(
             // TODO: how does a user actually tell a robot to settle down? Add more phrasings,
-            //  and handle at least one language besides English.
-            "something i will never ever ever say ever ever ever you can replace this sentence once you reach the relevant exercise"
+            "something i will never ever ever say ever ever ever you can replace this sentence and add more once you reach the relevant exercise"
         )
     }
 }
