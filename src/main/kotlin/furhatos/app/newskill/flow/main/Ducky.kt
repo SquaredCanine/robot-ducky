@@ -1,6 +1,8 @@
 package furhatos.app.newskill.flow.main
 
+import furhatos.app.newskill.donottouch.GeminiClient
 import furhatos.app.newskill.flow.Parent
+import furhatos.app.newskill.gemini.schemas.CaveManReply
 import furhatos.app.newskill.nlu.CalmDown
 import furhatos.flow.kotlin.State
 import furhatos.flow.kotlin.furhat
@@ -8,26 +10,34 @@ import furhatos.flow.kotlin.onResponse
 import furhatos.flow.kotlin.state
 
 val Ducky: State = state(Parent) {
+    val gemini = GeminiClient()
+    
     onEntry {
         // Listen to what the user has to say, or maybe even prompt the user?
-        furhat.ask("What can I help you with?")
+        furhat.ask("What can Bork help you with?")
     }
-    
+
     onResponse<CalmDown> {
         // Calm the robot down
+        furhat.listen()
     }
-    
+
     onResponse {
+        // placeholder
+        val reply = gemini.generate(
+            prompt = CaveManReply.prompt(it.text),
+            format = CaveManReply.Format,
+            systemInstruction = CaveManReply.systemInstructions
+        )
+        furhat.ask(reply.response)
         // 1st assignment
-        // 1. Send what the user said to gemini 
-        // 2. Fetch the response from gemini including the language code
-        // 3. Utter the response in the language that the prompt was in.
-        // 4. Update the language.
-        
+        // 1. Make the persona more helpful, create a rubber ducky that helps with programming questions.
+        // 2. Based on what programming language the question is in, change the face of the robot.
+
         // 2nd assignment
         // 1. Extend the response with gestures to make the robot
         //      feel more life like.
-        
+
         // 3rd assignment
         // Coworkers can be annoying sometimes, so at some point we should become angry!
         // 1. Have a value increase by the absurdness of the user's response.

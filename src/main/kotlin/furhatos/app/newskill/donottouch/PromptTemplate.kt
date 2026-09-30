@@ -1,4 +1,4 @@
-package furhatos.app.newskill.gemini
+package furhatos.app.newskill.donottouch
 
 /**
  * A prompt with `{{placeholder}}` slots, filled in once per call.

@@ -1,4 +1,6 @@
-package furhatos.app.newskill.gemini
+package furhatos.app.newskill.donottouch
+
+import java.lang.Class
 
 /**
  * A response schema in the OpenAPI subset that Gemini accepts for `generationConfig.responseSchema`.
@@ -18,27 +20,12 @@ data class GeminiSchema(
     val propertyOrdering: List<String>? = null
 )
 
-/**
- * Binds a Kotlin data class to the schema Gemini must produce for it.
- *
- * This is the seam that makes the client modular: [GeminiClient.generate] takes any
- * [GeminiResponseFormat] and hands back that type, so a new kind of answer means a new data class
- * plus its schema — never a change to the client.
- *
- * Implement it as a named companion so the format travels with the data class:
- *
- * ```
- * data class Foo(val bar: String) {
- *     companion object Format : GeminiResponseFormat<Foo> {
- *         override val type = Foo::class.java
- *         override val schema = objectSchema("bar" to stringSchema("What bar is for."))
- *     }
- * }
- * ```
- */
 interface GeminiResponseFormat<T : Any> {
-    /** The class Gemini's JSON is deserialised into. */
     val type: Class<T>
+
+    val systemInstructions: String
+
+    fun prompt(userText: String): String
 
     /** The schema Gemini is constrained to. Must describe [type]'s fields by their exact names. */
     val schema: GeminiSchema

@@ -1,7 +1,14 @@
-package furhatos.app.newskill.gemini
+package furhatos.app.newskill.donottouch
 
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
+import furhatos.app.newskill.gemini.Content
+import furhatos.app.newskill.gemini.ErrorEnvelope
+import furhatos.app.newskill.gemini.GenerateContentRequest
+import furhatos.app.newskill.gemini.GenerateContentResponse
+import furhatos.app.newskill.gemini.GenerationConfig
+import furhatos.app.newskill.gemini.Part
+import furhatos.app.newskill.gemini.ThinkingConfig
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
@@ -9,6 +16,7 @@ import java.net.URI
 import java.net.URISyntaxException
 import java.net.URL
 import java.nio.charset.StandardCharsets
+import java.util.Properties
 
 /**
  * Raised for every failure mode of a Gemini call: transport, HTTP status, or unusable payload.
@@ -108,7 +116,6 @@ class GeminiClient(
             generationConfig = GenerationConfig(
                 temperature = temperature,
                 maxOutputTokens = maxOutputTokens,
-                // These two together are what make the answer parseable rather than hopefully-parseable.
                 responseMimeType = "application/json",
                 responseSchema = format.schema,
                 thinkingConfig = thinkingBudget?.let { ThinkingConfig(it) }
@@ -274,7 +281,7 @@ class GeminiClient(
          * but has restricted it to projects with prior usage, so a freshly created key may get a 404
          * here and need a current model instead. Override per instance: `GeminiClient(model = "...")`.
          */
-        const val DEFAULT_MODEL = "gemini-2.5-flash"
+        const val DEFAULT_MODEL = "gemini-3.8-flash"
         const val DEFAULT_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 
         private const val RETRY_BASE_DELAY_MS = 500L
@@ -296,7 +303,7 @@ class GeminiClient(
 
         private fun apiKeyFromClasspath(): String? =
             GeminiClient::class.java.getResourceAsStream(API_KEY_RESOURCE)?.use { stream ->
-                java.util.Properties().apply { load(stream) }.getProperty("apiKey")?.trim()?.takeIf { it.isNotEmpty() }
+                Properties().apply { load(stream) }.getProperty("apiKey")?.trim()?.takeIf { it.isNotEmpty() }
             }
     }
 }
