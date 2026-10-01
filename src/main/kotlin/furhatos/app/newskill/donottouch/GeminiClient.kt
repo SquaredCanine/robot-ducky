@@ -274,7 +274,7 @@ class GeminiClient(
          * but has restricted it to projects with prior usage, so a freshly created key may get a 404
          * here and need a current model instead. Override per instance: `GeminiClient(model = "...")`.
          */
-        const val DEFAULT_MODEL = "gemini-3.8-flash"
+        const val DEFAULT_MODEL = "gemini-3.5-flash"
         const val DEFAULT_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 
         private const val RETRY_BASE_DELAY_MS = 500L
